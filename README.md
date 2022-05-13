@@ -108,7 +108,11 @@ Finalmente, como comprobación, se imprimen los valores de la junta actual, y su
     except rospy.ROSInterruptException:
         pass
    ```
-   
+A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
+[Ver video ROS, Python y RVIZ](https://youtu.be/2MRzVuKd-Z4)
 ## Toolbox
 ## Conexión con Matlab
 ## MATLAB + ROS + Toolbox
+A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
+[Ver video ROS y MatLab](https://youtu.be/wd5omj4S2GA)
+
