@@ -109,9 +109,56 @@ Finalmente, como comprobación, se imprimen los valores de la junta actual, y su
         pass
    ```
 A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
+
 [Ver video ROS, Python y RVIZ](https://youtu.be/2MRzVuKd-Z4)
 ## Toolbox
+Lo siguiente es la construcción del robot utilizando el comando SerialLink. Para eso se deben especificar las distancias, y los parámetors DH antes especificados. Igualmente, se crea la matriz de la herramienta con respecto al último marco de referencia. 
+```matlab
+L_1(1) = Link('revolute','alpha',pi/2,'a',0,'d',l(1),'offset',0, 'qlim',[-3*pi/4 3*pi/4]);
+L_1(2) = Link('revolute','alpha',0,   'a',l(2),'d',0,'offset',pi/2, 'qlim',[-3*pi/4 3*pi/4]);
+L_1(3) = Link('revolute','alpha',0,   'a',l(3),'d',0,'offset',0, 'qlim',[-3*pi/4 3*pi/4]);
+L_1(4) = Link('revolute','alpha',0,'a',l(4),'d',0,'offset',0, 'qlim',[-3*pi/4 3*pi/4]);
+PhantomX = SerialLink(L_1,'name','Px');
+PhantomX.tool = [0 0 1 l(4); -1 0 0 0; 0 -1 0 0; 0 0 0 1];
+```
+Lo siguiente es realizar el cálculo de la cinemática directa, y obtener la matriz que relaciona la base con la herramienta, más específicamente con el TCP. 
+Se calculan todas las MTH, y al final se obtiene la siguiente matriz:
+
+[![T0T.jpg](https://i.postimg.cc/kMfMfM3z/T0T.jpg)](https://postimg.cc/5jQMtVtS)
+
+Lo siguiente es mostrar el robot en distintas configuraciones. Se establece la posición de home, y se grafica en esta configuración. 
+```matlab
+q0=[0 0 0 0];
+PhantomX.plot(q0, 'notiles', 'noname');
+hold on
+trplot(eye(4),'rgb','arrow','length',15,'frame','0')
+ws = [-50 50];
+axis([repmat(ws,1,2) 0 60])
+PhantomX.fkine(q0);
+PhantomX.teach(q0)
+```
+[![Home.jpg](https://i.postimg.cc/bwHqSqTm/Home.jpg)](https://postimg.cc/nXzy6bNm)
+
+Otra configuración:
+```matlab
+q1=deg2rad ([90 -45 -30 45])
+```
+[![Conf1.jpg](https://i.postimg.cc/XJhW6qjY/Conf1.jpg)](https://postimg.cc/gXvQvYLC)
+
+Y otra:
+```matlab
+q2=deg2rad ([45 45 -60 -30])
+```
+[![Conf2.jpg](https://i.postimg.cc/3WQHWqDM/Conf2.jpg)](https://postimg.cc/2LGtK2wT)
+
+Y por último:
+```matlab
+q3=deg2rad ([20 -15 -70 10])
+```
+[![Conf3.jpg](https://i.postimg.cc/NG999rrb/Conf3.jpg)](https://postimg.cc/pyvX3rCn)
+
 ## Conexión con Matlab
+
 ## MATLAB + ROS + Toolbox
 A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
 [Ver video ROS y MatLab](https://youtu.be/wd5omj4S2GA)
