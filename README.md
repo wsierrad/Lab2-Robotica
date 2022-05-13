@@ -194,8 +194,8 @@ position = scanMsg.Position
 ```
 ## MATLAB + ROS + Toolbox
 
-Finalmente 
-A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
+Finalmente se une todo lo usado a lo largo del laboratorio, para indicar distintas configuraciones al robot, y observar como se comporta en MATLAB. Todas las configuraciones se muestra en el siguiente video:
+
 [Ver video ROS y MatLab](https://youtu.be/wd5omj4S2GA)
 
 ## Conclusiones
