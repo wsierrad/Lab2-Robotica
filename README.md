@@ -65,8 +65,11 @@ if __name__ == '__main__':
 Luego, se obtiene la tecla oprimida, y se realiza una determinada acción por cada una de ellas.
 
 -Para la w, si se encuentra en una articulación diferente a la última, se pasa a la siguiente articulación.
+
 -Para la s, si se encuentra en una articulación diferente a la primer, se pasa a la articulación anterior.
+
 -Para la d, se asigna el valor de la posición objetivo, y se pone la variable `change` en 1, para indicar que el valor de la articulación ha cambiado.
+
 -Para la a, se asigna el valor de la posición de home en  la articulación en su posición de home, y se pone la variable `change` en 1.
 
  ```python
