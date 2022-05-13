@@ -112,7 +112,7 @@ Finalmente podemos observar el resultado de la configuracion dada en el visualiz
 
 [![RVIZ.png](https://i.postimg.cc/fbphJgK6/RVIZ.png)](https://postimg.cc/5HBrrgD3)
 
-A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
+A continuacion se puede visualizar en YouTube el video de los resultados obtenidos, así como la visualización en RVIZ siendo actualizada:
 
 [Ver video ROS, Python y RVIZ](https://youtu.be/2MRzVuKd-Z4)
 ## Toolbox
@@ -194,7 +194,7 @@ position = scanMsg.Position
 ```
 ## MATLAB + ROS + Toolbox
 
-Finalmente se une todo lo usado a lo largo del laboratorio, para indicar distintas configuraciones al robot, y observar como se comporta en MATLAB. Todas las configuraciones se muestra en el siguiente video:
+Finalmente se une todo lo usado a lo largo del laboratorio, para indicar distintas configuraciones al robot, y observar como se comporta en MATLAB. Se construyo el robot en MATLAB, se visualiza con el toolbox, y con los servicios de Dynamixel, se conecta para enviar la posición deseada al robot, luego se suscribe al servicoio para saber la posicióbn y se obtiene la visualización en MATLAB. Todas las configuraciones se muestran en el siguiente video:
 
 [Ver video ROS y MatLab](https://youtu.be/wd5omj4S2GA)
 
