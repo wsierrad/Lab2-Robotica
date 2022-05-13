@@ -7,16 +7,18 @@ William Arturo Sierra Díaz
 ## Mediciones
 En primer lugar, se asistió al LABSIR y se tomaron unas series de medidas del robot, y de sus eslabones. A continuación, se hace un resumen de ellas y un diagrama mostrando como se tomaron estas medidas.
 
-- $L_1=47.1 cm$
+- $$L_1=47.1 cm$$
 
-- $L_2=106.5 cm$
+- $$L_2=106.5 cm$$
 
-- $L_3=106.5 cm$
+- $$L_3=106.5 cm$$
 
-- $L_4=69.7 cm$
+- $$L_4=69.7 cm$$
 
 A continuación un diagrama del robot Phantom X y sus articulaciones.
+
 [![Mediciones.jpg](https://i.postimg.cc/59DLZ8Xz/Mediciones.jpg)](https://postimg.cc/V5BJtrBs)
+
 ## Análisis
 Con base a las distancias que se tomaron de los eslabones, se establecen los marcos de referencia del robot, y se determinan los parámetros de Denavit-Hartenberg. En la imagen que sigue se muestra la tabla con los parámetros, y el robot con sus respectivos marcos de referencia. 
 [![phantomx.jpg](https://i.postimg.cc/rF6RhcHC/phantomx.jpg)](https://postimg.cc/8sHCc8Nj)
