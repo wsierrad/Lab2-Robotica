@@ -109,7 +109,9 @@ Finalmente, como comprobación, se imprimen los valores de la junta actual, y su
         pass
    ```
 Finalmente podemos observar el resultado de la configuracion dada en el visualizador RVIZ
+
 [![RVIZ.png](https://i.postimg.cc/fbphJgK6/RVIZ.png)](https://postimg.cc/5HBrrgD3)
+
 A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
 
 [Ver video ROS, Python y RVIZ](https://youtu.be/2MRzVuKd-Z4)
@@ -160,8 +162,8 @@ q3=deg2rad ([20 -15 -70 10])
 [![Conf3.jpg](https://i.postimg.cc/NG999rrb/Conf3.jpg)](https://postimg.cc/pyvX3rCn)
 
 ## Conexión con Matlab
-Tras tener el robot completamente establecido, se continuó con el laboratorio creando 
-```python
+Tras tener el robot completamente establecido, se continuó con el laboratorio creando el publicador, primero se inicia el nodo maestro. Se crea el publicador, definiendo el nombre del tópico y el tipo de mensaje a usar, con base en el repositorio de Dynamixel.  
+```matlab
 % Conexión con nodo maestro
 % Inicia la conexión con el nodo maestro por default en localhost por el puerto 11311. 
 rosinit;
@@ -172,7 +174,9 @@ motorSVC = rossvcclient('dynamixel_workbench/dynamixel_command');
 % Creación de mensaje para su publicación
 velMsg = rosmessage(motorSVC); 
 velMsg.AddrName = "Goal_Position";
-
+```
+Ahora, se usa este mensaje, para que con cada id se le pueda ir asignando un valor entre los límites para cada articulación, y así se haga el movimiento en cada una de ellas, con una pause determinada.
+```matlab
 for i = 1:length(pos) 
     velMsg.Id = i;
     value = round(mapfun(pos(i),-150,150,0,1023))
@@ -180,17 +184,17 @@ for i = 1:length(pos)
     call(motorSVC,velMsg);
     pause(1);
 end
-
-% ROSsuscriber
-% Creación del suscriptor, se define el nombre del topico y el tipo de mensaje
+```
+Se crea entonces un  suscriptor, se define el nombre del topico y el tipo de mensaje. Se crea una pausa para recibir el primer mensaje y se muestra el último mensaje publicado por el tópico, en este caso la posición de cada una de las articulaciones del manipulador.
+```matlab
 poseSub = rossubscriber("dynamixel_workbench/joint_states","sensor_msgs/JointState");
-% Pausa de 1ms mientras se recibe el primer mensaje
 pause(1)
-% Se toma el ultimo mensaje publicado por el topico
 scanMsg = poseSub.LatestMessage
 position = scanMsg.Position
 ```
 ## MATLAB + ROS + Toolbox
+
+Finalmente 
 A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
 [Ver video ROS y MatLab](https://youtu.be/wd5omj4S2GA)
 
