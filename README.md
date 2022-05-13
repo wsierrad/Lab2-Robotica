@@ -21,7 +21,7 @@ A continuación un diagrama del robot Phantom X y sus articulaciones.
 
 ## Análisis
 Con base a las distancias que se tomaron de los eslabones, se establecen los marcos de referencia del robot, y se determinan los parámetros de Denavit-Hartenberg. En la imagen que sigue se muestra la tabla con los parámetros, y el robot con sus respectivos marcos de referencia. 
-[![phantomx.jpg](https://i.postimg.cc/rF6RhcHC/phantomx.jpg)](https://postimg.cc/8sHCc8Nj)
+[![phantomx.jpg](https://i.postimg.cc/NjTk1z9J/phantomx.jpg)](https://postimg.cc/YvrF78xY)
 ## ROS
 Lo siguiente indicado en la guía, es crear un script de Python que permita controlar cada una de las articulaciones del robot, utilizando los tópicos y servicios de ROS necesarios para este fin. En primer lugar, se crea un script llamado `movePXRobot.py`.  En el se importan inicialmente el cliente de Python para ROS, el módulo `termios` para recibr la entrada por teclado, y los ,emsajes de Dynamixel, para enviar comandos a los motores que controlan cada valor de articulación.
 
@@ -158,7 +158,36 @@ q3=deg2rad ([20 -15 -70 10])
 [![Conf3.jpg](https://i.postimg.cc/NG999rrb/Conf3.jpg)](https://postimg.cc/pyvX3rCn)
 
 ## Conexión con Matlab
+Tras tener el robot completamente establecido, se continuó con el laboratorio creando 
+```python
+% Conexión con nodo maestro
+% Inicia la conexión con el nodo maestro por default en localhost por el puerto 11311. 
+rosinit;
 
+% Configuracion de publicador
+% Creación del publicador, se define el nombre del topico y el tipo de mensaje
+motorSVC = rossvcclient('dynamixel_workbench/dynamixel_command');
+% Creación de mensaje para su publicación
+velMsg = rosmessage(motorSVC); 
+velMsg.AddrName = "Goal_Position";
+
+for i = 1:length(pos) 
+    velMsg.Id = i;
+    value = round(mapfun(pos(i),-150,150,0,1023))
+    velMsg.Value = value;
+    call(motorSVC,velMsg);
+    pause(1);
+end
+
+% ROSsuscriber
+% Creación del suscriptor, se define el nombre del topico y el tipo de mensaje
+poseSub = rossubscriber("dynamixel_workbench/joint_states","sensor_msgs/JointState");
+% Pausa de 1ms mientras se recibe el primer mensaje
+pause(1)
+% Se toma el ultimo mensaje publicado por el topico
+scanMsg = poseSub.LatestMessage
+position = scanMsg.Position
+```
 ## MATLAB + ROS + Toolbox
 A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
 [Ver video ROS y MatLab](https://youtu.be/wd5omj4S2GA)
