@@ -108,6 +108,8 @@ Finalmente, como comprobación, se imprimen los valores de la junta actual, y su
     except rospy.ROSInterruptException:
         pass
    ```
+Finalmente podemos observar el resultado de la configuracion dada en el visualizador RVIZ
+[![RVIZ.png](https://i.postimg.cc/fbphJgK6/RVIZ.png)](https://postimg.cc/5HBrrgD3)
 A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
 
 [Ver video ROS, Python y RVIZ](https://youtu.be/2MRzVuKd-Z4)
@@ -192,3 +194,8 @@ position = scanMsg.Position
 A continuacion se puede visualizar en YouTube el video de los resultados obtenidos:
 [Ver video ROS y MatLab](https://youtu.be/wd5omj4S2GA)
 
+## Conclusiones
++ ROS por medio del uso de los servicios y nodos permite de una forma estructurada el control del robot Phantom X por medio de script tanto en MatLab como en Python
++ RVIZ es un visualizador que nos permite conectar los servicios de ROS y asi podemos tener una vista virtual del robot y sus movimientos en la vida real
++ Por medio del toolbox RVC tools podemos simular las posiciones y orientaciones del robot y luego comparar con los movimientos que este efectua en el espacio fisico
++ La fidelidad de la visualizacion en RVIZ depende en gran medida de la fidelidad de nuestras medidas y modelos CAD realizados
